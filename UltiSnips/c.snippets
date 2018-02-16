@@ -58,7 +58,7 @@ snippet o "#pragma once"
 endsnippet
 
 snippet s "struct"
-typedef struct {${1:`!v expand('%:p:t:r')`}
+typedef struct ${1:`!v expand('%:p:t:r')`}
 {
 	${0}
 } ${1:`!v expand('%:p:t:r')`};
