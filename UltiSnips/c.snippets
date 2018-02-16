@@ -1,0 +1,85 @@
+snippet p "printf()"
+printf("${1:message}\n"${0});
+endsnippet
+
+snippet r "return"
+return${1: };
+endsnippet
+
+snippet i "if"
+if (${1:true})
+{
+	${0}
+}
+endsnippet
+
+snippet e "else"
+else
+{
+	${0}
+}
+endsnippet
+
+snippet ie "if {} else {}"
+if (${1:true})
+{
+	${2}
+}
+else${0}
+{
+	${3}
+}
+endsnippet
+
+snippet ei "else if"
+else if (${1:true})
+{
+	${2}
+}
+
+endsnippet
+
+snippet w "while"
+while (${1:true})
+{
+	${0}
+}
+endsnippet
+
+snippet f "for"
+for (${1}; ${2}; ${3})
+{
+	${0}
+}
+endsnippet
+
+snippet o "#pragma once"
+#pragma once
+endsnippet
+
+snippet s "struct"
+typedef struct {${1:`!v expand('%:p:t:r')`}
+{
+	${0}
+} ${1:`!v expand('%:p:t:r')`};
+endsnippet
+
+snippet e "enum"
+typedef enum ${1:`!v expand('%:p:t:r')`}
+{
+	${0}
+} ${1:`!v expand('%:p:t:r')`};
+endsnippet
+
+snippet c "creator"
+${1:`!v expand('%:p:t:r')`}* ${1:`!v expand('%:p:t:r')`}_create();
+endsnippet
+
+snippet d "destroy"
+void  ${1:`!v expand('%:p:t:r')`}_destroy(${1:`!v expand('%:p:t:r')`}** value);
+endsnippet
+
+snippet t "todo"
+// todo: ${0}
+endsnippet
+
