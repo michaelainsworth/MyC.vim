@@ -1,5 +1,5 @@
 snippet p "printf()"
-printf("${1:message}\n"${0});
+printf("${1:message}\n"$0);
 endsnippet
 
 snippet r "return"
@@ -9,32 +9,32 @@ endsnippet
 snippet i "if"
 if (${1:true})
 {
-	${0}
+	$0
 }
 endsnippet
 
 snippet e "else"
 else
 {
-	${0}
+	$0
 }
 endsnippet
 
 snippet ie "if {} else {}"
 if (${1:true})
 {
-	${2}
+	$2
 }
-else${0}
+else$0
 {
-	${3}
+	$3
 }
 endsnippet
 
 snippet ei "else if"
 else if (${1:true})
 {
-	${2}
+	$2
 }
 
 endsnippet
@@ -42,44 +42,81 @@ endsnippet
 snippet w "while"
 while (${1:true})
 {
-	${0}
+	$0
 }
 endsnippet
 
 snippet f "for"
-for (${1}; ${2}; ${3})
+for ($1; $2; $3)
 {
-	${0}
+	$0
 }
 endsnippet
 
 snippet o "#pragma once"
-#pragma once
+#ifndef ${1:`!v toupper(expand('%:p:t:r')) . '_H'`}
+#define $1
+
+${0}
+
+#endif /* #ifndef $1 */
 endsnippet
 
 snippet s "struct"
+typedef struct ${1:`!v expand('%:p:t:r')`} $1;
+
+$0
+endsnippet
+
+snippet ss "struct"
 typedef struct ${1:`!v expand('%:p:t:r')`}
 {
-	${0}
-} ${1:`!v expand('%:p:t:r')`};
+	$0
+} $1;
 endsnippet
 
 snippet n "enum"
 typedef enum ${1:`!v expand('%:p:t:r')`}
 {
-	${0}
-} ${1:`!v expand('%:p:t:r')`};
+	$0
+} $1;
 endsnippet
 
 snippet c "creator"
-${1:`!v expand('%:p:t:r')`}* ${1:`!v expand('%:p:t:r')`}_create();
+${1:`!v expand('%:p:t:r')`}* $1_create();
+endsnippet
+
+snippet cc "creator"
+${1:`!v expand('%:p:t:r')`}* $1_create()
+{
+	$1* ${2:value} = calloc(1, sizeof($1));
+	$0
+	return $2;
+}
 endsnippet
 
 snippet d "destroy"
-void ${1:`!v expand('%:p:t:r')`}_destroy(${1:`!v expand('%:p:t:r')`}** value);
+void ${1:`!v expand('%:p:t:r')`}_destroy($1** value);
+endsnippet
+
+snippet dd "destroy"
+void ${1:`!v expand('%:p:t:r')`}_destroy($1** ${2:value})
+{
+	if (!$2 || !*$2)
+	{
+		return;
+	}
+
+	$0
+
+	free(*$2);
+	*$2 = 0;
+}
 endsnippet
 
 snippet t "todo"
-// todo: ${0}
+/*
+todo: $0
+*/
 endsnippet
 
