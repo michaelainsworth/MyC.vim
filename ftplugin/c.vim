@@ -20,37 +20,13 @@ setlocal formatprg=astyle\ --style=allman\ --max-code-length=80
 "         3
 "     );
 function! s:CFixFunctionLength()
-    let l:line = getline('.')
-    let l:parts = split(l:line, '(')
-
-    if len(l:parts) <= 1
-        return
-    endif
-
-    normal 0f(ili
-
-    while 1
-        let l:line = getline('.')
-        let l:parts = split(l:line, ',')
-
-        if len(l:parts) > 1
-            normal 0f,li
-        else
-            let l:line = getline('.')
-            let l:parts = split(l:line, ')')
-
-            if len(l:parts) <= 1
-                return
-            else
-                normal 0f)i
-                return
-            endif
-        endif
-    endwhile
+    norm 0vwh"sy0maf(ila$himbk:s/, /,/g'aV'b<.........2j>i('aV'b
 endfunction
+
 command! CFixFunctionLength :call <SID>CFixFunctionLength()
 
 nnoremap <leader>cf :CFixFunctionLength<cr>
 
 setlocal textwidth=80
 setlocal formatoptions=tcroqj
+
