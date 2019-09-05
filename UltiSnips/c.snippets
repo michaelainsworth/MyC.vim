@@ -120,3 +120,13 @@ todo: $0
 */
 endsnippet
 
+snippet ix "int exception"
+{
+	int r = -1;
+
+	$0
+
+cleanup:
+	return r;
+}
+endsnippet
